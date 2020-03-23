@@ -2,47 +2,76 @@ package com.company;
 
 
 import java.util.*;
+import java.util.Comparator;
 
 public class Main {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
 
     public static void main(String[] args) {
 
-        ArrayList<String> flowers = new ArrayList();
-        ArrayList<String> name = new ArrayList();
+        ArrayList<String> boysName = new ArrayList();
         Scanner input = new Scanner(System.in);
-        System.out.println("Введите 5 названий цветка:");
-        String n = input.nextLine();
-        String a[] = new String[5];
-        for (int k = 0; k < 4; k++) {
-            a[k] = input.next();
-            flowers.add(a[k]);
+        System.out.println(ANSI_BLUE +"Введите 5 имен мальчика:");
+        boysName.add(input.nextLine());
+        boysName.add(input.nextLine());
+        boysName.add(input.nextLine());
+        boysName.add(input.nextLine());
+        boysName.add(input.nextLine());
+
+        Iterator<String> iterA = boysName.iterator();
+        while (iterA.hasNext()) {
+            String a = iterA.next();
+            System.out.println(ANSI_BLUE + a);
         }
-        Collections.sort(flowers);
-        System.out.println("Сортированный список A-Z: ");
-        for (String f : flowers) {
-            System.out.println(f);
+        System.out.println("____________________________");
+
+        ArrayList<String> girlsName = new ArrayList();
+        System.out.println(ANSI_PURPLE + "Введите 5 имен девочки:");
+        girlsName.add(input.nextLine());
+        girlsName.add(input.nextLine());
+        girlsName.add(input.nextLine());
+        girlsName.add(input.nextLine());
+        girlsName.add(input.nextLine());
+
+
+        Iterator<String> iterB = girlsName.iterator();
+        while (iterB.hasNext()) {
+            String b = iterB.next();
+            System.out.println(ANSI_PURPLE + b);
+            Collections.reverse(girlsName);
+        }
+        System.out.println("____________________________");
+
+        ArrayList<String> C = new ArrayList<>();
+        for (int i = 0; i < girlsName.size(); i++) {
+            C.add(boysName.get(i));
+            C.add(girlsName.get(i));
         }
 
-        System.out.println("Введите 5 имен:");
-        String m = input.nextLine();
-        String b[] = new String[5];
-        for (int j = 0; j < 4; j++) {
-            b[j] = input.next();
-            name.add(b[j]);
+
+        Collections.addAll(C);
+
+        Collections.sort(C, new Comparator<String>() {
+            @Override
+            public int compare(String boysName, String girlsName) {
+                if (boysName.length() > girlsName.length()) {
+                    return 1;
+                } else if (boysName.length() < girlsName.length()) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+        });
+        for (String print: C) {
+            System.out.println(ANSI_YELLOW + print);
+
         }
-
-        Collections.reverse(name);
-        System.out.println("Сортированный список Z-A: ");
-        for (int i = 0; i < name.size(); i++) {
-            System.out.println(" " + name.get(i));
-
-        }
-
-        ArrayList<String> newList = new ArrayList<String>();
-        newList.addAll(flowers);
-        newList.addAll(name);
-        System.out.println(" " + newList);
-
     }
 }
 

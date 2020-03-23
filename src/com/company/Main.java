@@ -43,18 +43,16 @@ public class Main {
         while (iterB.hasNext()) {
             String b = iterB.next();
             System.out.println(ANSI_PURPLE + b);
-            Collections.reverse(girlsName);
         }
         System.out.println("____________________________");
+
+        Collections.reverse(girlsName);
 
         ArrayList<String> C = new ArrayList<>();
         for (int i = 0; i < girlsName.size(); i++) {
             C.add(boysName.get(i));
             C.add(girlsName.get(i));
         }
-
-
-        Collections.addAll(C);
 
         Collections.sort(C, new Comparator<String>() {
             @Override
